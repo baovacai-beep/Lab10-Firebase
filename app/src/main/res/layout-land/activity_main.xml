@@ -1,81 +1,173 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F1F5F9"
+    android:orientation="vertical"
+    android:padding="12dp"
     tools:context=".MainActivity">
 
-  <EditText
-    android:id="@+id/etPhone"
-    android:layout_width="380dp"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="36dp"
-    android:ems="10"
-    android:inputType="phone"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.296"
-    app:layout_constraintStart_toEndOf="@+id/textView3"
-    app:layout_constraintTop_toBottomOf="@+id/etName" />
-
-  <EditText
-    android:id="@+id/etName"
-    android:layout_width="380dp"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="36dp"
-    android:layout_marginTop="72dp"
-    android:ems="10"
-    android:inputType="text"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.156"
-    app:layout_constraintStart_toEndOf="@+id/textView"
-    app:layout_constraintTop_toTopOf="parent" />
-
   <TextView
-    android:id="@+id/textView"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="112dp"
-    android:layout_marginTop="100dp"
-    android:text="Name"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent" />
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="8dp"
+      android:text="THÊM USER VÀO FIRESTORE (CHẾ ĐỘ XOAY NGANG)"
+      android:textAlignment="center"
+      android:textColor="#0F172A"
+      android:textSize="17sp"
+      android:textStyle="bold" />
 
-  <TextView
-    android:id="@+id/textView3"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="112dp"
-    android:layout_marginTop="60dp"
-    android:text="Phone"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/textView" />
+  <androidx.cardview.widget.CardView
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      app:cardBackgroundColor="#FFFFFF"
+      app:cardCornerRadius="14dp"
+      app:cardElevation="4dp">
 
-  <Button
-    android:id="@+id/btAdd"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="228dp"
-    android:layout_marginTop="68dp"
-    android:text="Add"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/textView3"
-    app:layout_constraintVertical_bias="0.0" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="12dp">
 
-  <Button
-    android:id="@+id/btShow"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="64dp"
-    android:layout_marginTop="68dp"
-    android:text="Show DB"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.284"
-    app:layout_constraintStart_toEndOf="@+id/btAdd"
-    app:layout_constraintTop_toBottomOf="@+id/textView3"
-    app:layout_constraintVertical_bias="0.0" />
+      <!-- Bố cục 2 cột Bootstrap trong màn hình ngang -->
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <!-- Cột trái: Form nhập 5 trường dữ liệu -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:layout_weight="1.2"
+            android:orientation="vertical">
+
+          <com.google.android.material.textfield.TextInputLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginBottom="8dp"
+              app:boxCornerRadiusBottomEnd="8dp"
+              app:boxCornerRadiusBottomStart="8dp"
+              app:boxCornerRadiusTopEnd="8dp"
+              app:boxCornerRadiusTopStart="8dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etUname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Tên người dùng (Username)"
+                android:textColor="#1E293B"
+                android:textSize="14sp" />
+          </com.google.android.material.textfield.TextInputLayout>
+
+          <com.google.android.material.textfield.TextInputLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginBottom="8dp"
+              app:boxCornerRadiusBottomEnd="8dp"
+              app:boxCornerRadiusBottomStart="8dp"
+              app:boxCornerRadiusTopEnd="8dp"
+              app:boxCornerRadiusTopStart="8dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Mật khẩu (Password)"
+                android:inputType="textPassword"
+                android:textColor="#1E293B"
+                android:textSize="14sp" />
+          </com.google.android.material.textfield.TextInputLayout>
+
+          <com.google.android.material.textfield.TextInputLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginBottom="8dp"
+              app:boxCornerRadiusBottomEnd="8dp"
+              app:boxCornerRadiusBottomStart="8dp"
+              app:boxCornerRadiusTopEnd="8dp"
+              app:boxCornerRadiusTopStart="8dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etUrlProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="URL ảnh đại diện (Unsplash)"
+                android:textColor="#1E293B"
+                android:textSize="14sp" />
+          </com.google.android.material.textfield.TextInputLayout>
+
+          <com.google.android.material.textfield.TextInputLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              app:boxCornerRadiusBottomEnd="8dp"
+              app:boxCornerRadiusBottomStart="8dp"
+              app:boxCornerRadiusTopEnd="8dp"
+              app:boxCornerRadiusTopStart="8dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etShortBio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:hint="Tiểu sử ngắn (Short Bio)"
+                android:lines="2"
+                android:textColor="#1E293B"
+                android:textSize="14sp" />
+          </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <!-- Cột phải: Các nút tương tác -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.8"
+            android:gravity="center"
+            android:orientation="vertical">
+
+          <com.google.android.material.button.MaterialButton
+              android:id="@+id/btAdd"
+              android:layout_width="match_parent"
+              android:layout_height="48dp"
+              android:layout_marginBottom="8dp"
+              android:backgroundTint="#2563EB"
+              android:text="LƯU USER VÀO FIRESTORE"
+              android:textAllCaps="false"
+              android:textSize="13sp"
+              app:cornerRadius="8dp" />
+
+          <com.google.android.material.button.MaterialButton
+              android:id="@+id/btQuickSample"
+              style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+              android:layout_width="match_parent"
+              android:layout_height="48dp"
+              android:layout_marginBottom="8dp"
+              android:text="Nạp 3 User mẫu (Unsplash)"
+              android:textAllCaps="false"
+              android:textColor="#2563EB"
+              android:textSize="13sp"
+              app:cornerRadius="8dp"
+              app:strokeColor="#2563EB" />
+
+          <com.google.android.material.button.MaterialButton
+              android:id="@+id/btShow"
+              android:layout_width="match_parent"
+              android:layout_height="48dp"
+              android:backgroundTint="#059669"
+              android:text="XEM DANH SÁCH (RECYCLERVIEW)"
+              android:textAllCaps="false"
+              android:textSize="13sp"
+              app:cornerRadius="8dp" />
+
+        </LinearLayout>
+
+      </LinearLayout>
+    </ScrollView>
+  </androidx.cardview.widget.CardView>
+
+</LinearLayout>

@@ -1,35 +1,24 @@
 package vn.edu.ueh.thanhdnh.firebase_example;
 
 import android.view.View;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class UserViewHolder extends RecyclerView.ViewHolder {
-  private TextView txtName, txtPhone;
-  private UserViewAdapter adapter;
+  public ImageView ivAvatar;
+  public TextView tvUname, tvBio, tvPassword;
+  public ImageButton btnDelete;
 
-  public UserViewHolder(@NonNull View itemView, UserViewAdapter adapter) {
+  public UserViewHolder(@NonNull View itemView) {
     super(itemView);
-    txtName = itemView.findViewById(R.id.txt_name);
-    txtPhone = itemView.findViewById(R.id.txt_phone);
-    this.adapter = adapter;
-  }
-
-  public TextView getTxtName() {
-    return txtName;
-  }
-
-  public void setTxtName(TextView txtName) {
-    this.txtName = txtName;
-  }
-
-  public TextView getTxtPhone() {
-    return txtPhone;
-  }
-
-  public void setTxtPhone(TextView txtPhone) {
-    this.txtPhone = txtPhone;
+    ivAvatar = itemView.findViewById(R.id.ivAvatar);
+    tvUname = itemView.findViewById(R.id.tvUname);
+    tvBio = itemView.findViewById(R.id.tvBio);
+    tvPassword = itemView.findViewById(R.id.tvPassword);
+    btnDelete = itemView.findViewById(R.id.btnDelete);
   }
 }

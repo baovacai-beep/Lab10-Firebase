@@ -1,21 +1,13 @@
 package vn.edu.ueh.thanhdnh.firebase_example;
 
 import android.os.Bundle;
-import android.util.Log;
+import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
@@ -24,63 +16,56 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Objects;
 
 public class ShowDataActivity extends AppCompatActivity {
-    FirebaseFirestore db;
-    RecyclerView recyclerView;
-    List<User> users = new ArrayList();
+
+    private RecyclerView recyclerView;
+    private UserViewAdapter adapter;
+    private List<User> userList = new ArrayList<>();
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_show_data);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
 
-        FirebaseApp.initializeApp(this);
-        //users.add(new User("default", "000"));
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle("Danh sách Người Dùng (Realtime)");
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
 
-        recyclerView = findViewById(R.id.reclyclerview);
-        UserViewAdapter adapter = new UserViewAdapter(getBaseContext(), users);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getBaseContext()));
+        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new UserViewAdapter(this, userList);
         recyclerView.setAdapter(adapter);
 
         db = FirebaseFirestore.getInstance();
-        /*db.collection("users").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-          @Override
-          public void onComplete(@NonNull Task<QuerySnapshot> task) {
-            if(task.isSuccessful()){
-              users.clear();
-              for(QueryDocumentSnapshot q : task.getResult()){
-                Map<String, Object> data = q.getData();
-                User user = new User((String)data.get("name"), (String)data.get("phone"));
-                users.add(user);
-              }
-              adapter.update(users);
-              adapter.notifyDataSetChanged();
+
+        // LẮNG NGHE REALTIME (Slide 92): Tự động cập nhật khi thêm/sửa/xóa trên Firebase
+        db.collection("users").addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot snapshots, @Nullable FirebaseFirestoreException error) {
+                if (error != null) {
+                    Toast.makeText(ShowDataActivity.this, "Lỗi lắng nghe: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (snapshots != null) {
+                    userList.clear();
+                    for (QueryDocumentSnapshot q : snapshots) {
+                        User user = q.toObject(User.class);
+                        user.setId(q.getId()); // Gán Document ID để phục vụ thao tác xóa
+                        userList.add(user);
+                    }
+                    adapter.notifyDataSetChanged();
+                }
             }
-          }
-        });*/
-      db.collection("users").addSnapshotListener(new EventListener<QuerySnapshot>() {
-        @Override
-        public void onEvent(@Nullable QuerySnapshot snapshots, @Nullable FirebaseFirestoreException error) {
-          if (snapshots != null) {
-            users.clear();
-            for (QueryDocumentSnapshot q : snapshots) {
-              Map<String, Object> data = q.getData();
-              User user = new User((String) data.get("name"), (String) data.get("phone"));
-              users.add(user);
-            }
-            adapter.update(users);
-            adapter.notifyDataSetChanged();
-          }
-        }
-      });
+        });
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return true;
     }
 }

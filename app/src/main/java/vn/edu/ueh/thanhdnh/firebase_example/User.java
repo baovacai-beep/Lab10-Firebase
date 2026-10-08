@@ -1,42 +1,63 @@
 package vn.edu.ueh.thanhdnh.firebase_example;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.util.Base64;
+import java.io.Serializable;
 
-public class User {
-  private String name;
-  private String phone;
+public class User implements Serializable {
+  private String id;
+  private String uname;
+  private String password;
+  private String url_profile;
+  private String short_bio;
 
-  public User(String name, String phone) {
-    this.name = name;
-    this.phone = phone;
+  // BẮT BUỘC: Firestore cần Constructor không đối số để mapping dữ liệu
+  public User() {
   }
 
-  public String getName() {
-    return name;
+  public User(String id, String uname, String password, String url_profile, String short_bio) {
+    this.id = id;
+    this.uname = uname;
+    this.password = password;
+    this.url_profile = url_profile;
+    this.short_bio = short_bio;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public String getId() {
+    return id;
   }
 
-  public String getPhone() {
-    return phone;
+  public void setId(String id) {
+    this.id = id;
   }
 
-  public void setPhone(String phone) {
-    this.phone = phone;
+  public String getUname() {
+    return uname;
   }
 
-  @Override
-  public String toString() {
-    return "User{" +
-      "name='" + name + '\'' +
-      ", phone='" + phone + '\'' +
-      '}';
+  public void setUname(String uname) {
+    this.uname = uname;
+  }
+
+  public String getPassword() {
+    return password;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
+  }
+
+  public String getUrl_profile() {
+    return url_profile;
+  }
+
+  public void setUrl_profile(String url_profile) {
+    this.url_profile = url_profile;
+  }
+
+  public String getShort_bio() {
+    return short_bio;
+  }
+
+  public void setShort_bio(String short_bio) {
+    this.short_bio = short_bio;
   }
 }
