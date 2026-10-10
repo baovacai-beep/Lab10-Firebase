@@ -14,7 +14,7 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_marginBottom="8dp"
-      android:text="THÊM USER VÀO FIRESTORE (CHẾ ĐỘ XOAY NGANG)"
+      android:text="QUẢN LÝ BÀI VIẾT (CHẾ ĐỘ XOAY NGANG)"
       android:textAlignment="center"
       android:textColor="#0F172A"
       android:textSize="17sp"
@@ -32,13 +32,12 @@
         android:layout_height="match_parent"
         android:padding="12dp">
 
-      <!-- Bố cục 2 cột Bootstrap trong màn hình ngang -->
       <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:orientation="horizontal">
 
-        <!-- Cột trái: Form nhập 5 trường dữ liệu -->
+        <!-- Cột trái: Nhập thông tin Article -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -56,10 +55,10 @@
               app:boxCornerRadiusTopStart="8dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etUname"
+                android:id="@+id/etTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Tên người dùng (Username)"
+                android:hint="Tiêu đề bài viết (Title)"
                 android:textColor="#1E293B"
                 android:textSize="14sp" />
           </com.google.android.material.textfield.TextInputLayout>
@@ -74,29 +73,10 @@
               app:boxCornerRadiusTopStart="8dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etPassword"
+                android:id="@+id/etImageUrl"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Mật khẩu (Password)"
-                android:inputType="textPassword"
-                android:textColor="#1E293B"
-                android:textSize="14sp" />
-          </com.google.android.material.textfield.TextInputLayout>
-
-          <com.google.android.material.textfield.TextInputLayout
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:layout_marginBottom="8dp"
-              app:boxCornerRadiusBottomEnd="8dp"
-              app:boxCornerRadiusBottomStart="8dp"
-              app:boxCornerRadiusTopEnd="8dp"
-              app:boxCornerRadiusTopStart="8dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etUrlProfile"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="URL ảnh đại diện (Unsplash)"
+                android:hint="URL hình ảnh (Image URL)"
                 android:textColor="#1E293B"
                 android:textSize="14sp" />
           </com.google.android.material.textfield.TextInputLayout>
@@ -110,19 +90,19 @@
               app:boxCornerRadiusTopStart="8dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etShortBio"
+                android:id="@+id/etContent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="top"
-                android:hint="Tiểu sử ngắn (Short Bio)"
-                android:lines="2"
+                android:hint="Nội dung bài viết (Content)"
+                android:lines="3"
                 android:textColor="#1E293B"
                 android:textSize="14sp" />
           </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
 
-        <!-- Cột phải: Các nút tương tác -->
+        <!-- Cột phải: Các nút hành động -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -136,7 +116,7 @@
               android:layout_height="48dp"
               android:layout_marginBottom="8dp"
               android:backgroundTint="#2563EB"
-              android:text="LƯU USER VÀO FIRESTORE"
+              android:text="LƯU BÀI VIẾT"
               android:textAllCaps="false"
               android:textSize="13sp"
               app:cornerRadius="8dp" />
@@ -147,7 +127,7 @@
               android:layout_width="match_parent"
               android:layout_height="48dp"
               android:layout_marginBottom="8dp"
-              android:text="Nạp 3 User mẫu (Unsplash)"
+              android:text="Nạp 3 bài mẫu"
               android:textAllCaps="false"
               android:textColor="#2563EB"
               android:textSize="13sp"
@@ -159,7 +139,7 @@
               android:layout_width="match_parent"
               android:layout_height="48dp"
               android:backgroundTint="#059669"
-              android:text="XEM DANH SÁCH (RECYCLERVIEW)"
+              android:text="XEM DANH SÁCH"
               android:textAllCaps="false"
               android:textSize="13sp"
               app:cornerRadius="8dp" />

@@ -24,6 +24,9 @@
     <activity
         android:name=".ShowDataActivity"
         android:label="Danh sách Người Dùng" />
+    <activity
+        android:name=".DetailArticleActivity"
+        android:exported="false" />
 
   </application>
 

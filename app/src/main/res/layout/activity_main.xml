@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F1F5F9"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    tools:context=".MainActivity">
 
   <TextView
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_marginBottom="12dp"
-      android:text="THÊM USER VÀO FIRESTORE"
+      android:text="QUẢN LÝ BÀI VIẾT (FIRESTORE)"
       android:textAlignment="center"
       android:textColor="#0F172A"
       android:textSize="20sp"
@@ -39,71 +41,53 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="12dp"
             app:boxCornerRadiusBottomEnd="8dp"
             app:boxCornerRadiusBottomStart="8dp"
             app:boxCornerRadiusTopEnd="8dp"
             app:boxCornerRadiusTopStart="8dp">
 
           <com.google.android.material.textfield.TextInputEditText
-              android:id="@+id/etUname"
+              android:id="@+id/etTitle"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:hint="Tên người dùng (Username)"
+              android:hint="Tiêu đề bài viết (Title)"
               android:textColor="#1E293B" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="12dp"
             app:boxCornerRadiusBottomEnd="8dp"
             app:boxCornerRadiusBottomStart="8dp"
             app:boxCornerRadiusTopEnd="8dp"
             app:boxCornerRadiusTopStart="8dp">
 
           <com.google.android.material.textfield.TextInputEditText
-              android:id="@+id/etPassword"
+              android:id="@+id/etImageUrl"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:hint="Mật khẩu (Password)"
-              android:inputType="textPassword"
+              android:hint="URL hình ảnh (Image URL)"
               android:textColor="#1E293B" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="18dp"
             app:boxCornerRadiusBottomEnd="8dp"
             app:boxCornerRadiusBottomStart="8dp"
             app:boxCornerRadiusTopEnd="8dp"
             app:boxCornerRadiusTopStart="8dp">
 
           <com.google.android.material.textfield.TextInputEditText
-              android:id="@+id/etUrlProfile"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:hint="URL ảnh đại diện (Unsplash)"
-              android:textColor="#1E293B" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            app:boxCornerRadiusBottomEnd="8dp"
-            app:boxCornerRadiusBottomStart="8dp"
-            app:boxCornerRadiusTopEnd="8dp"
-            app:boxCornerRadiusTopStart="8dp">
-
-          <com.google.android.material.textfield.TextInputEditText
-              android:id="@+id/etShortBio"
+              android:id="@+id/etContent"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:gravity="top"
-              android:hint="Tiểu sử ngắn (Short Bio)"
-              android:lines="3"
+              android:hint="Nội dung bài viết (Content)"
+              android:lines="4"
               android:textColor="#1E293B" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -113,7 +97,7 @@
             android:layout_height="50dp"
             android:layout_marginBottom="8dp"
             android:backgroundTint="#2563EB"
-            android:text="LƯU USER VÀO FIRESTORE"
+            android:text="LƯU BÀI VIẾT VÀO FIRESTORE"
             android:textAllCaps="false"
             android:textSize="15sp"
             app:cornerRadius="10dp" />
@@ -124,7 +108,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginBottom="8dp"
-            android:text="Nạp nhanh 3 User mẫu (Ảnh Unsplash)"
+            android:text="Nạp 3 bài viết mẫu (Ảnh Unsplash)"
             android:textAllCaps="false"
             android:textColor="#2563EB"
             app:cornerRadius="10dp"
@@ -135,9 +119,9 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:backgroundTint="#059669"
-            android:text="XEM DANH SÁCH USER (RECYCLERVIEW)"
+            android:text="XEM DANH SÁCH BÀI VIẾT"
             android:textAllCaps="false"
-            android:textSize="12sp"
+            android:textSize="15sp"
             app:cornerRadius="10dp" />
 
       </LinearLayout>

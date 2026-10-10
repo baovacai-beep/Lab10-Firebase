@@ -20,8 +20,8 @@ import java.util.List;
 public class ShowDataActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private UserViewAdapter adapter;
-    private List<User> userList = new ArrayList<>();
+    private ArticleAdapter adapter;
+    private List<Article> articleList = new ArrayList<>();
     private FirebaseFirestore db;
 
     @Override
@@ -30,32 +30,31 @@ public class ShowDataActivity extends AppCompatActivity {
         setContentView(R.layout.activity_show_data);
 
         if (getSupportActionBar() != null) {
-            getSupportActionBar().setTitle("Danh sách Người Dùng (Realtime)");
+            getSupportActionBar().setTitle("Danh Sách Bài Viết (Realtime)");
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new UserViewAdapter(this, userList);
+        adapter = new ArticleAdapter(this, articleList);
         recyclerView.setAdapter(adapter);
 
         db = FirebaseFirestore.getInstance();
 
-        // LẮNG NGHE REALTIME (Slide 92): Tự động cập nhật khi thêm/sửa/xóa trên Firebase
-        db.collection("users").addSnapshotListener(new EventListener<QuerySnapshot>() {
+        db.collection("articles").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot snapshots, @Nullable FirebaseFirestoreException error) {
                 if (error != null) {
-                    Toast.makeText(ShowDataActivity.this, "Lỗi lắng nghe: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ShowDataActivity.this, "Lỗi: " + error.getMessage(), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (snapshots != null) {
-                    userList.clear();
+                    articleList.clear();
                     for (QueryDocumentSnapshot q : snapshots) {
-                        User user = q.toObject(User.class);
-                        user.setId(q.getId()); // Gán Document ID để phục vụ thao tác xóa
-                        userList.add(user);
+                        Article article = q.toObject(Article.class);
+                        article.setId(q.getId());
+                        articleList.add(article);
                     }
                     adapter.notifyDataSetChanged();
                 }

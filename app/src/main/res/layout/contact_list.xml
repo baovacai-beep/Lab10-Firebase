@@ -18,16 +18,16 @@
       android:orientation="horizontal"
       android:padding="12dp">
 
-    <!-- Ảnh đại diện Avatar -->
+    <!-- Hình ảnh bài viết -->
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/ivAvatar"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
+        android:id="@+id/ivThumbnail"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
         android:scaleType="centerCrop"
         android:src="@mipmap/ic_launcher"
         app:shapeAppearanceOverlay="@style/ShapeAppearance.MaterialComponents.MediumComponent" />
 
-    <!-- Cột thông tin User -->
+    <!-- Cột tiêu đề và nội dung -->
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -36,47 +36,37 @@
         android:orientation="vertical">
 
       <TextView
-          android:id="@+id/tvUname"
+          android:id="@+id/tvTitle"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:text="Tên người dùng"
+          android:ellipsize="end"
+          android:maxLines="1"
+          android:text="Tiêu đề bài viết"
           android:textColor="#0F172A"
-          android:textSize="17sp"
+          android:textSize="16sp"
           android:textStyle="bold" />
 
       <TextView
-          android:id="@+id/tvBio"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="2dp"
-          android:ellipsize="end"
-          android:maxLines="2"
-          android:text="Tiểu sử ngắn của người dùng..."
-          android:textColor="#64748B"
-          android:textSize="13sp" />
-
-      <TextView
-          android:id="@+id/tvPassword"
+          android:id="@+id/tvContent"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_marginTop="4dp"
-          android:background="#E2E8F0"
-          android:paddingHorizontal="6dp"
-          android:paddingVertical="2dp"
-          android:text="Pass: ******"
-          android:textColor="#475569"
-          android:textSize="11sp" />
+          android:ellipsize="end"
+          android:maxLines="2"
+          android:text="Nội dung tóm tắt của bài viết..."
+          android:textColor="#64748B"
+          android:textSize="13sp" />
     </LinearLayout>
 
-    <!-- Nút xóa trên Firestore: Đã chuẩn hóa 48dp x 48dp để hết lỗi TouchTargetSizeCheck -->
+    <!-- Nút xóa (đạt chuẩn kích thước cảm ứng >= 48dp) -->
     <ImageButton
         android:id="@+id/btnDelete"
         android:layout_width="48dp"
         android:layout_height="48dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Xóa bài viết"
         android:padding="12dp"
         android:scaleType="fitCenter"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:contentDescription="Xóa"
         android:src="@android:drawable/ic_menu_delete"
         app:tint="#EF4444"
         tools:ignore="TouchTargetSizeCheck" />
